@@ -2,7 +2,7 @@ require 'net/http'
 require 'json'
 require 'time'
 
-JENKINS_URI = URI.parse("http://dory.dmz.wgtn.cat-it.co.nz:8080")
+JENKINS_URI = URI.parse("http://jenkins.koha-community.org")
 
 JENKINS_AUTH = {
   'name' => nil,
@@ -11,7 +11,7 @@ JENKINS_AUTH = {
 
 # the key of this mapping must be a unique identifier for your job, the according value must be the name that is specified in jenkins
 job_mapping = {
-  'bbb' => { :job => 'broadband', :pre_job => 'broadband'}
+  'bbb' => { :job => 'koha_master', :pre_job => 'koha_master'}
 }
 
 def get_number_of_failing_tests(job_name)
@@ -33,7 +33,7 @@ end
 def get_json_for_job(job_name, build = 'lastBuild')
   job_name = URI.encode(job_name)
   http = Net::HTTP.new(JENKINS_URI.host, JENKINS_URI.port)
-  request = Net::HTTP::Get.new("/hudson/job/#{job_name}/#{build}/api/json")
+  request = Net::HTTP::Get.new("/job/#{job_name}/#{build}/api/json")
   if JENKINS_AUTH['name']
     request.basic_auth(JENKINS_AUTH['name'], JENKINS_AUTH['password'])
   end
