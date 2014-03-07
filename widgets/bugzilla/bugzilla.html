@@ -1,0 +1,27 @@
+<h1 class="title">
+  <span data-bind="title"></span>
+  <span data-bind="count"></span>
+</h1>
+
+<ul class="list-nostyle">
+  <li data-foreach-item="items">
+  <a data-bind-href="item.link">
+    <div class="wrhead">
+      <span data-bind="item.request_id"></span> - <span data-bind="item.value"></span>
+    </div>
+    <div class="label" data-bind="item.label"></div>
+  </a>
+  </li>
+  <li class="more" data-showif="clipped">
+  <a data-bind-href="linktoall">
+    <div class="wrhead">&nbsp;</div>
+    <div class="label">&#8674; More</div>
+  </a>
+  </li>
+</ul>
+
+<p class="more-info">
+<span data-bind="moreinfo"></span>
+<a data-bind-href="linktoall"><span data-bind="linktoalllabel"></span></a>
+</p>
+<p class="updated-at" data-bind="updatedAtMessage"></p>
